@@ -1,0 +1,657 @@
+<iframe title="培楠愛國教育基金" srcdoc="<!DOCTYPE html>
+<html lang=&quot;zh-HK&quot;>
+<head>
+  <meta charset=&quot;UTF-8&quot; />
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; />
+  <title>培楠愛國教育基金 | PEI NAN</title>
+  <meta name=&quot;description&quot; content=&quot;培楠愛國教育基金致力支援基層學童、推動青少年國民教育及社區發展服務。&quot; />
+  <link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot; />
+  <link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin />
+  <link href=&quot;https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot; />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: &quot;Noto Sans TC&quot;, &quot;PingFang TC&quot;, &quot;Microsoft JhengHei&quot;, sans-serif;
+      color: #171717;
+      background: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    ::selection { background: #bae6fd; color: #0c4a6e; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255,255,255,.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e0f2fe; box-shadow: 0 1px 8px rgba(0,0,0,.04);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; max-width: 1200px; margin: 0 auto;
+    }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: #0284c7; color: #1e293b; font-weight: 700; font-size: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-img { height: 44px; width: auto; display: block; }
+    .hero-grid { display: grid; gap: 48px; align-items: center; }
+    @media (min-width: 1024px) { .hero-grid { grid-template-columns: 1fr 1fr; } }
+    .hero-images { position: relative; }
+    .hero-images img { width: 100%; border-radius: 16px; border: 1px solid #bae6fd; }
+    .hero-images .hero-sub { margin-top: 16px; }
+    @media (min-width: 1024px) {
+      .hero-images .hero-sub { position: absolute; bottom: -32px; left: -32px; width: 45%; margin-top: 0; }
+    }
+    .project-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .logo-text p { font-size: 11px; color: #6b7280; letter-spacing: .05em; }
+    .nav-desktop { display: none; gap: 4px; }
+    .nav-desktop a {
+      padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 500;
+      color: #334155; transition: .2s;
+    }
+    .nav-desktop a:hover { background: #f0f9ff; color: #0284c7; }
+    .btn-primary {
+      display: none; padding: 10px 20px; border-radius: 999px;
+      background: #0284c7; color: #1e293b; font-size: 14px; font-weight: 600;
+      transition: .2s;
+    }
+    .btn-primary:hover { background: #0369a1; box-shadow: 0 4px 12px rgba(185,28,28,.3); }
+    .menu-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border: none; background: none;
+      cursor: pointer; border-radius: 8px; color: #334155;
+    }
+    .menu-toggle:hover { background: #f3f4f6; }
+    .nav-mobile {
+      display: none; background: #fff; border-top: 1px solid #f3f4f6;
+      padding: 8px 24px 16px;
+    }
+    .nav-mobile.open { display: block; }
+    .nav-mobile a {
+      display: block; padding: 12px 16px; border-radius: 8px;
+      font-size: 14px; font-weight: 500; color: #374151;
+    }
+    .nav-mobile a:hover { background: #f0f9ff; color: #0284c7; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 40%, #dbeafe 100%);
+      position: relative; overflow: hidden; padding: 120px 0 80px;
+    }
+    .hero::before, .hero::after {
+      content: &quot;&quot;; position: absolute; border-radius: 50%; filter: blur(80px); opacity: .12;
+    }
+    .hero::before { width: 280px; height: 280px; background: #fff; top: 80px; left: 40px; }
+    .hero::after { width: 380px; height: 380px; background: #38bdf8; bottom: 80px; right: 40px; }
+    .hero-content { position: relative; z-index: 1; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 999px; font-size: 14px; color: #0369a1;
+      border: 1px solid #bae6fd; background: rgba(255,255,255,.8);
+      margin-bottom: 24px;
+    }
+    .badge svg { color: #38bdf8; }
+    .hero h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; color: #1e293b;
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .hero .tagline { font-size: clamp(1rem, 2.5vw, 1.25rem); color: #0369a1; margin-bottom: 8px; }
+    .hero .desc { font-size: 16px; color: #475569; max-width: 640px; margin-bottom: 40px; }
+    .hero-btns { display: flex; flex-wrap: wrap; gap: 16px; }
+    .btn-white {
+      padding: 14px 32px; border-radius: 999px; background: #0284c7;
+      color: #fff; font-size: 14px; font-weight: 600; transition: .2s;
+    }
+    .btn-white:hover { background: #0369a1; box-shadow: 0 8px 24px rgba(2,132,199,.25); }
+    .btn-outline {
+      padding: 14px 32px; border-radius: 999px; border: 2px solid #38bdf8;
+      color: #0369a1; font-size: 14px; font-weight: 600; transition: .2s;
+    }
+    .btn-outline:hover { border-color: #0284c7; background: #f0f9ff; }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; max-width: 480px; margin-top: 64px; }
+    .stat-num { font-size: 2rem; font-weight: 700; color: #0369a1; }
+    .stat-label { font-size: 12px; color: #64748b; margin-top: 4px; }
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      color: #7dd3fc; animation: bounce 2s infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+
+    /* Sections */
+    section { padding: 96px 0; }
+    .section-label {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .15em; color: #0284c7; text-align: center;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700;
+      text-align: center; margin-top: 12px; color: #111;
+    }
+    .section-desc {
+      text-align: center; color: #6b7280; max-width: 640px;
+      margin: 16px auto 0; font-size: 16px;
+    }
+    .bg-gray { background: #f0f9ff; }
+
+    /* About */
+    .about-grid { display: grid; gap: 32px; margin-top: 64px; }
+    .card {
+      background: #fff; border-radius: 16px; padding: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06); border: 1px solid #f3f4f6;
+    }
+    .card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .card-icon.red { background: #f0f9ff; color: #0284c7; }
+    .card-icon.amber { background: #fffbeb; color: #b45309; }
+    .card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .card p { color: #6b7280; line-height: 1.7; }
+    .values { text-align: center; margin-top: 48px; }
+    .values-title { display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; margin-bottom: 24px; color: #0284c7; }
+    .value-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .value-tag {
+      padding: 10px 24px; border-radius: 999px; background: #0284c7;
+      color: #1e293b; font-size: 14px; font-weight: 500;
+    }
+
+    /* Projects */
+    .projects-grid { display: grid; gap: 32px; margin-top: 64px; }
+    .project-card {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,.06); border: 1px solid #f3f4f6;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
+    .project-bar { height: 4px; }
+    .project-bar.red { background: linear-gradient(90deg, #38bdf8, #0284c7); }
+    .project-bar.amber { background: linear-gradient(90deg, #f59e0b, #ea580c); }
+    .project-bar.green { background: linear-gradient(90deg, #10b981, #0d9488); }
+    .project-body { padding: 32px; }
+    .project-head { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+    .project-icon {
+      width: 56px; height: 56px; border-radius: 16px; color: #1e293b;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .project-icon.red { background: linear-gradient(135deg, #38bdf8, #0284c7); }
+    .project-icon.amber { background: linear-gradient(135deg, #f59e0b, #ea580c); }
+    .project-icon.green { background: linear-gradient(135deg, #10b981, #0d9488); }
+    .project-num { font-size: 2.5rem; font-weight: 700; color: #f3f4f6; }
+    .project-body h3 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+    .project-body p { color: #6b7280; line-height: 1.7; }
+
+    /* News */
+    .news-header { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+    .news-header .section-label, .news-header .section-title { text-align: left; margin-top: 0; }
+    .news-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #0284c7; }
+    .news-grid { display: grid; gap: 24px; }
+    .news-card {
+      background: #fff; border-radius: 16px; padding: 24px;
+      border: 1px solid #f3f4f6; transition: box-shadow .2s;
+    }
+    .news-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+    .news-date { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #9ca3af; margin-bottom: 12px; }
+    .news-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; transition: color .2s; }
+    .news-card:hover h3 { color: #0284c7; }
+    .news-card p { font-size: 14px; color: #6b7280; line-height: 1.6; }
+
+    /* Support */
+    .support-box {
+      background: linear-gradient(135deg, #0369a1, #0c4a6e);
+      border-radius: 24px; padding: 64px 32px;
+    }
+    .support-box .section-label { color: #7dd3fc; }
+    .support-box .section-title { color: #1e293b; }
+    .support-box .section-desc { color: #bae6fd; }
+    .support-grid { display: grid; gap: 24px; margin-top: 48px; }
+    .support-card {
+      border: 1px solid #bae6fd; background: #fff;
+      border-radius: 16px; padding: 32px; backdrop-filter: blur(4px);
+      transition: background .2s;
+    }
+    .support-card:hover { background: #f0f9ff; }
+    .support-icon {
+      width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center; color: #38bdf8; margin-bottom: 16px;
+    }
+    .support-card h3 { color: #1e293b; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+    .support-card p { color: #bae6fd; font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+    .support-card .btn-white { display: inline-block; padding: 10px 24px; font-size: 14px; background: #0284c7; color: #fff; }
+
+    /* Contact */
+    .contact-grid { display: grid; gap: 32px; margin-top: 64px; }
+    .contact-item {
+      display: flex; gap: 16px; background: #fff; border-radius: 16px;
+      padding: 24px; border: 1px solid #f3f4f6;
+    }
+    .contact-icon {
+      width: 48px; height: 48px; border-radius: 12px; background: #f0f9ff;
+      color: #0284c7; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-item .label { font-size: 13px; color: #9ca3af; font-weight: 500; }
+    .contact-item .value { font-size: 16px; font-weight: 600; margin-top: 4px; }
+    .contact-item a.value:hover { color: #0284c7; }
+    .fb-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #1877F2; color: #1e293b; padding: 16px 24px;
+      border-radius: 16px; font-weight: 600; transition: .2s;
+    }
+    .fb-btn:hover { background: #166FE5; }
+    .form-card { background: #fff; border-radius: 16px; padding: 32px; border: 1px solid #f3f4f6; }
+    .form-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .form-card .form-desc { font-size: 14px; color: #6b7280; margin-bottom: 24px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 500; color: #374151; margin-bottom: 6px; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 12px 16px; border: 1px solid #e5e7eb;
+      border-radius: 12px; font-size: 14px; font-family: inherit;
+      outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: #0284c7; box-shadow: 0 0 0 3px rgba(185,28,28,.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%; padding: 14px; border: none; border-radius: 12px;
+      background: #0284c7; color: #1e293b; font-size: 14px; font-weight: 600;
+      cursor: pointer; font-family: inherit; transition: .2s;
+    }
+    .form-submit:hover { background: #0369a1; box-shadow: 0 4px 12px rgba(185,28,28,.3); }
+
+    /* Footer */
+    .footer { border-top: 1px solid #e5e7eb; padding: 48px 0 32px; background: #fff; }
+    .footer-grid { display: grid; gap: 32px; }
+    .footer h4 { font-weight: 600; margin-bottom: 16px; }
+    .footer-links { display: flex; flex-direction: column; gap: 8px; }
+    .footer-links a { font-size: 14px; color: #6b7280; transition: color .2s; }
+    .footer-links a:hover { color: #0284c7; }
+    .footer-info p { font-size: 14px; color: #6b7280; margin-bottom: 4px; }
+    .footer-info .en { font-size: 12px; color: #9ca3af; }
+    .footer-bottom {
+      margin-top: 40px; padding-top: 32px; border-top: 1px solid #f3f4f6;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      font-size: 14px; color: #9ca3af;
+    }
+    .footer-bottom a:hover { color: #0284c7; }
+
+    /* Responsive */
+    @media (min-width: 768px) {
+      .about-grid { grid-template-columns: 1fr 1fr; }
+      .projects-grid { grid-template-columns: repeat(3, 1fr); }
+      .news-grid { grid-template-columns: repeat(3, 1fr); }
+      .news-header { flex-direction: row; align-items: flex-end; justify-content: space-between; }
+      .support-grid { grid-template-columns: repeat(3, 1fr); }
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+      .footer-bottom { flex-direction: row; justify-content: space-between; }
+    }
+    @media (min-width: 1024px) {
+      .nav-desktop { display: flex; }
+      .btn-primary { display: inline-block; }
+      .menu-toggle { display: none; }
+      .nav-mobile { display: none !important; }
+      .logo-text h1 { font-size: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 導覽列 -->
+  <header class=&quot;header&quot; id=&quot;header&quot;>
+    <div class=&quot;header-inner&quot;>
+      <a href=&quot;#home&quot; class=&quot;logo&quot;>
+        <img src=&quot;images/logo.png&quot; alt=&quot;培楠愛國教育基金&quot; class=&quot;logo-img&quot; />
+      </a>
+      <nav class=&quot;nav-desktop&quot;>
+        <a href=&quot;#home&quot;>主頁</a>
+        <a href=&quot;#about&quot;>關於我們</a>
+        <a href=&quot;#projects&quot;>重點項目</a>
+        <a href=&quot;#news&quot;>培楠動向</a>
+        <a href=&quot;#support&quot;>支持我們</a>
+        <a href=&quot;#contact&quot;>聯絡我們</a>
+      </nav>
+      <a href=&quot;#support&quot; class=&quot;btn-primary&quot;>支持我們</a>
+      <button class=&quot;menu-toggle&quot; id=&quot;menuToggle&quot; aria-label=&quot;開啟選單&quot;>
+        <svg width=&quot;24&quot; height=&quot;24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M4 6h16M4 12h16M4 18h16&quot;/></svg>
+      </button>
+    </div>
+    <nav class=&quot;nav-mobile&quot; id=&quot;navMobile&quot;>
+      <a href=&quot;#home&quot;>主頁</a>
+      <a href=&quot;#about&quot;>關於我們</a>
+      <a href=&quot;#projects&quot;>重點項目</a>
+      <a href=&quot;#news&quot;>培楠動向</a>
+      <a href=&quot;#support&quot;>支持我們</a>
+      <a href=&quot;#contact&quot;>聯絡我們</a>
+    </nav>
+  </header>
+
+  <!-- 主頁 Hero -->
+  <section class=&quot;hero&quot; id=&quot;home&quot;>
+    <div class=&quot;container hero-grid&quot;>
+      <div class=&quot;hero-content&quot;>
+        <div class=&quot;badge&quot;>
+          <svg width=&quot;16&quot; height=&quot;16&quot; fill=&quot;currentColor&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z&quot;/></svg>
+          以生命影響生命
+        </div>
+        <h2>培楠愛國教育基金</h2>
+        <p class=&quot;tagline&quot;>以生命影響生命，共建關懷社區</p>
+        <p class=&quot;desc&quot;>我們致力結合社會資源，支援基層學童、培育青少年國民教育、推動社區發展服務，共建關懷和諧的香港社區。</p>
+        <div class=&quot;hero-btns&quot;>
+          <a href=&quot;#projects&quot; class=&quot;btn-white&quot;>了解重點項目</a>
+          <a href=&quot;#support&quot; class=&quot;btn-outline&quot;>支持我們</a>
+        </div>
+        <div class=&quot;stats&quot;>
+          <div><div class=&quot;stat-num&quot;>3</div><div class=&quot;stat-label&quot;>重點服務領域</div></div>
+          <div><div class=&quot;stat-num&quot;>100+</div><div class=&quot;stat-label&quot;>受惠學童</div></div>
+          <div><div class=&quot;stat-num&quot;>50+</div><div class=&quot;stat-label&quot;>義工夥伴</div></div>
+        </div>
+      </div>
+      <div class=&quot;hero-images&quot;>
+        <img src=&quot;images/hero-banner.jpg&quot; alt=&quot;培楠愛國教育基金活動&quot; />
+        <img src=&quot;images/hero-edited.jpg&quot; alt=&quot;培楠基金服務現場&quot; class=&quot;hero-sub&quot; />
+      </div>
+    </div>
+    <a href=&quot;#about&quot; class=&quot;scroll-hint&quot; aria-label=&quot;向下捲動&quot;>
+      <svg width=&quot;24&quot; height=&quot;24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M12 5v14M5 12l7 7 7-7&quot;/></svg>
+    </a>
+  </section>
+
+  <!-- 關於我們 -->
+  <section id=&quot;about&quot; class=&quot;bg-gray&quot;>
+    <div class=&quot;container&quot;>
+      <p class=&quot;section-label&quot;>關於我們</p>
+      <h2 class=&quot;section-title&quot;>培楠愛國教育基金</h2>
+      <p class=&quot;section-desc&quot;>我們是一個致力推動愛國教育與社區關懷的非牟利機構，以實際行動關懷基層、培育青年、服務社區。</p>
+      <div class=&quot;about-grid&quot;>
+        <div class=&quot;card&quot;>
+          <div class=&quot;card-icon red&quot;>
+            <svg width=&quot;24&quot; height=&quot;24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;6&quot;/><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;2&quot;/></svg>
+          </div>
+          <h3>我們的使命</h3>
+          <p>培楠愛國教育基金致力推動愛國教育與社區關懷，透過多元化的服務項目，支援基層家庭、培育青少年、建設和諧社區。</p>
+        </div>
+        <div class=&quot;card&quot;>
+          <div class=&quot;card-icon amber&quot;>
+            <svg width=&quot;24&quot; height=&quot;24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z&quot;/><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;3&quot;/></svg>
+          </div>
+          <h3>我們的願景</h3>
+          <p>成為香港具影響力的愛國教育與社區服務機構，讓每一位受助者都能感受關懷，每一位義工都能發揮所長。</p>
+        </div>
+      </div>
+      <div class=&quot;values&quot;>
+        <div class=&quot;values-title&quot;>
+          <svg width=&quot;20&quot; height=&quot;20&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z&quot;/></svg>
+          核心價值
+        </div>
+        <div class=&quot;value-tags&quot;>
+          <span class=&quot;value-tag&quot;>愛國情懷</span>
+          <span class=&quot;value-tag&quot;>關懷基層</span>
+          <span class=&quot;value-tag&quot;>青年培育</span>
+          <span class=&quot;value-tag&quot;>社區共建</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 重點項目 -->
+  <section id=&quot;projects&quot;>
+    <div class=&quot;container&quot;>
+      <p class=&quot;section-label&quot;>重點項目</p>
+      <h2 class=&quot;section-title&quot;>三大服務領域</h2>
+      <p class=&quot;section-desc&quot;>我們聚焦三大核心服務，從教育支援到青年培育，再到社區關懷，全方位服務香港社會。</p>
+      <div class=&quot;projects-grid&quot;>
+        <article class=&quot;project-card&quot;>
+          <img src=&quot;images/project-grassroots.jpg&quot; alt=&quot;支援基層學童&quot; class=&quot;project-img&quot; />
+          <div class=&quot;project-bar red&quot;></div>
+          <div class=&quot;project-body&quot;>
+            <div class=&quot;project-head&quot;>
+              <div class=&quot;project-icon red&quot;>
+                <svg width=&quot;28&quot; height=&quot;28&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M4 19.5A2.5 2.5 0 016.5 17H20&quot;/><path d=&quot;M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z&quot;/></svg>
+              </div>
+              <span class=&quot;project-num&quot;>01</span>
+            </div>
+            <h3>支援基層學童</h3>
+            <p>教育是消除跨代貧窮的關鍵。我們致力結合社會資源，為劏房及基層學童提供功課輔導和多元小組活動，減輕基層家長經濟和精神負擔，培養積極的學習態度和良好的品格。</p>
+          </div>
+        </article>
+        <article class=&quot;project-card&quot;>
+          <img src=&quot;images/project-youth.jpg&quot; alt=&quot;青少年國民教育&quot; class=&quot;project-img&quot; />
+          <div class=&quot;project-bar amber&quot;></div>
+          <div class=&quot;project-body&quot;>
+            <div class=&quot;project-head&quot;>
+              <div class=&quot;project-icon amber&quot;>
+                <svg width=&quot;28&quot; height=&quot;28&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z&quot;/><line x1=&quot;4&quot; y1=&quot;22&quot; x2=&quot;4&quot; y2=&quot;15&quot;/></svg>
+              </div>
+              <span class=&quot;project-num&quot;>02</span>
+            </div>
+            <h3>青少年國民教育</h3>
+            <p>通過義工訓練及服務，以提高青少年對社會的責任感，與學校合辦愛國活動，培養青年家國情懷，協助青年發展潛能，更好融入國家發展大局。</p>
+          </div>
+        </article>
+        <article class=&quot;project-card&quot;>
+          <img src=&quot;images/project-community.jpg&quot; alt=&quot;社區發展服務&quot; class=&quot;project-img&quot; />
+          <div class=&quot;project-bar green&quot;></div>
+          <div class=&quot;project-body&quot;>
+            <div class=&quot;project-head&quot;>
+              <div class=&quot;project-icon green&quot;>
+                <svg width=&quot;28&quot; height=&quot;28&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z&quot;/></svg>
+              </div>
+              <span class=&quot;project-num&quot;>03</span>
+            </div>
+            <h3>社區發展服務</h3>
+            <p>建立一個充滿關懷和愛的社區，誠邀社會各界人士參與義工服務工作，攜手幫助社會上有需要家庭，同時鼓勵居民發揮本身的技能及專長，實踐「助人自助」，以生命影響生命！</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 培楠動向 -->
+  <section id=&quot;news&quot; class=&quot;bg-gray&quot;>
+    <div class=&quot;container&quot;>
+      <div class=&quot;news-header&quot;>
+        <div>
+          <p class=&quot;section-label&quot;>培楠動向</p>
+          <h2 class=&quot;section-title&quot;>最新動態</h2>
+        </div>
+        <a href=&quot;#contact&quot; class=&quot;news-link&quot;>查看更多 <svg width=&quot;16&quot; height=&quot;16&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M5 12h14M12 5l7 7-7 7&quot;/></svg></a>
+      </div>
+      <div class=&quot;news-grid&quot;>
+        <article class=&quot;news-card&quot;>
+          <div class=&quot;news-date&quot;>
+            <svg width=&quot;14&quot; height=&quot;14&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><line x1=&quot;16&quot; y1=&quot;2&quot; x2=&quot;16&quot; y2=&quot;6&quot;/><line x1=&quot;8&quot; y1=&quot;2&quot; x2=&quot;8&quot; y2=&quot;6&quot;/><line x1=&quot;3&quot; y1=&quot;10&quot; x2=&quot;21&quot; y2=&quot;10&quot;/></svg>
+            2025-05
+          </div>
+          <h3>基層學童功課輔導計劃正式啟動</h3>
+          <p>為劏房及基層學童提供免費功課輔導，減輕家長負擔，培養良好學習習慣。</p>
+        </article>
+        <article class=&quot;news-card&quot;>
+          <div class=&quot;news-date&quot;>
+            <svg width=&quot;14&quot; height=&quot;14&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><line x1=&quot;16&quot; y1=&quot;2&quot; x2=&quot;16&quot; y2=&quot;6&quot;/><line x1=&quot;8&quot; y1=&quot;2&quot; x2=&quot;8&quot; y2=&quot;6&quot;/><line x1=&quot;3&quot; y1=&quot;10&quot; x2=&quot;21&quot; y2=&quot;10&quot;/></svg>
+            2025-04
+          </div>
+          <h3>青少年義工培訓計劃</h3>
+          <p>與本地學校合作，開展愛國教育及義工服務培訓，培育青年家國情懷。</p>
+        </article>
+        <article class=&quot;news-card&quot;>
+          <div class=&quot;news-date&quot;>
+            <svg width=&quot;14&quot; height=&quot;14&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><rect x=&quot;3&quot; y=&quot;4&quot; width=&quot;18&quot; height=&quot;18&quot; rx=&quot;2&quot;/><line x1=&quot;16&quot; y1=&quot;2&quot; x2=&quot;16&quot; y2=&quot;6&quot;/><line x1=&quot;8&quot; y1=&quot;2&quot; x2=&quot;8&quot; y2=&quot;6&quot;/><line x1=&quot;3&quot; y1=&quot;10&quot; x2=&quot;21&quot; y2=&quot;10&quot;/></svg>
+            2025-03
+          </div>
+          <h3>社區關懷日活動</h3>
+          <p>組織義工探訪有需要家庭，送上關懷物資，傳遞社區溫暖。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 支持我們 -->
+  <section id=&quot;support&quot;>
+    <div class=&quot;container&quot;>
+      <div class=&quot;support-box&quot;>
+        <p class=&quot;section-label&quot;>支持我們</p>
+        <h2 class=&quot;section-title&quot;>與我們一起，創造更多可能</h2>
+        <p class=&quot;section-desc&quot;>無論是成為義工、捐款支持，還是企業合作，您的每一份參與都能為社區帶來正面改變。</p>
+        <div class=&quot;support-grid&quot;>
+          <div class=&quot;support-card&quot;>
+            <div class=&quot;support-icon&quot;>
+              <svg width=&quot;24&quot; height=&quot;24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z&quot;/></svg>
+            </div>
+            <h3>成為義工</h3>
+            <p>加入我們的義工團隊，以您的時間和專長，為社區帶來改變。</p>
+            <a href=&quot;#contact&quot; class=&quot;btn-white&quot;>立即報名</a>
+          </div>
+          <div class=&quot;support-card&quot;>
+            <div class=&quot;support-icon&quot;>
+              <svg width=&quot;24&quot; height=&quot;24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;10&quot;/><path d=&quot;M16 8h-6a2 2 0 100 4h4a2 2 0 110 4H8&quot;/><line x1=&quot;12&quot; y1=&quot;18&quot; x2=&quot;12&quot; y2=&quot;22&quot;/><line x1=&quot;12&quot; y1=&quot;2&quot; x2=&quot;12&quot; y2=&quot;6&quot;/></svg>
+            </div>
+            <h3>捐款支持</h3>
+            <p>您的每一份支持，都能幫助更多基層學童和家庭獲得所需援助。</p>
+            <a href=&quot;#contact&quot; class=&quot;btn-white&quot;>了解詳情</a>
+          </div>
+          <div class=&quot;support-card&quot;>
+            <div class=&quot;support-icon&quot;>
+              <svg width=&quot;24&quot; height=&quot;24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><rect x=&quot;4&quot; y=&quot;2&quot; width=&quot;16&quot; height=&quot;20&quot; rx=&quot;2&quot;/><path d=&quot;M9 22v-4h6v4&quot;/><path d=&quot;M8 6h.01M16 6h.01M12 6h.01M12 10h.01M12 14h.01M16 10h.01M16 14h.01M8 10h.01M8 14h.01&quot;/></svg>
+            </div>
+            <h3>企業合作</h3>
+            <p>歡迎企業與我們攜手合作，共同推動愛國教育與社區發展。</p>
+            <a href=&quot;#contact&quot; class=&quot;btn-white&quot;>聯絡我們</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 聯絡我們 -->
+  <section id=&quot;contact&quot; class=&quot;bg-gray&quot;>
+    <div class=&quot;container&quot;>
+      <p class=&quot;section-label&quot;>聯絡我們</p>
+      <h2 class=&quot;section-title&quot;>歡迎與我們聯繫</h2>
+      <p class=&quot;section-desc&quot;>如有任何查詢、合作意向或希望了解更多服務詳情，歡迎透過以下方式與我們聯絡。</p>
+      <div class=&quot;contact-grid&quot;>
+        <div>
+          <div class=&quot;contact-item&quot;>
+            <div class=&quot;contact-icon&quot;>
+              <svg width=&quot;22&quot; height=&quot;22&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z&quot;/></svg>
+            </div>
+            <div>
+              <p class=&quot;label&quot;>電話</p>
+              <a href=&quot;tel:+85239050377&quot; class=&quot;value&quot;>(+852) 3905 0377</a>
+            </div>
+          </div>
+          <div class=&quot;contact-item&quot; style=&quot;margin-top:16px&quot;>
+            <div class=&quot;contact-icon&quot;>
+              <svg width=&quot;22&quot; height=&quot;22&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z&quot;/><polyline points=&quot;22,6 12,13 2,6&quot;/></svg>
+            </div>
+            <div>
+              <p class=&quot;label&quot;>電郵</p>
+              <a href=&quot;mailto:peinanfoundation@gmail.com&quot; class=&quot;value&quot;>peinanfoundation@gmail.com</a>
+            </div>
+          </div>
+          <div class=&quot;contact-item&quot; style=&quot;margin-top:16px&quot;>
+            <div class=&quot;contact-icon&quot;>
+              <svg width=&quot;22&quot; height=&quot;22&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; viewBox=&quot;0 0 24 24&quot;><path d=&quot;M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z&quot;/><circle cx=&quot;12&quot; cy=&quot;10&quot; r=&quot;3&quot;/></svg>
+            </div>
+            <div>
+              <p class=&quot;label&quot;>地址</p>
+              <p class=&quot;value&quot;>香港九龍旺角彌敦道691-697號永如大廈1字樓697室</p>
+            </div>
+          </div>
+          <a href=&quot;https://www.facebook.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;fb-btn&quot; style=&quot;margin-top:16px&quot;>
+            <img src=&quot;images/facebook.png&quot; alt=&quot;Facebook&quot; width=&quot;22&quot; height=&quot;22&quot; style=&quot;display:block&quot; />
+            Facebook
+          </a>
+        </div>
+        <div class=&quot;form-card&quot;>
+          <h3>發送訊息</h3>
+          <p class=&quot;form-desc&quot;>填寫以下表格，我們會盡快回覆您。</p>
+          <form id=&quot;contactForm&quot;>
+            <div class=&quot;form-group&quot;>
+              <label for=&quot;name&quot;>姓名</label>
+              <input type=&quot;text&quot; id=&quot;name&quot; placeholder=&quot;您的姓名&quot; required />
+            </div>
+            <div class=&quot;form-group&quot;>
+              <label for=&quot;email&quot;>電郵</label>
+              <input type=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;your@email.com&quot; required />
+            </div>
+            <div class=&quot;form-group&quot;>
+              <label for=&quot;message&quot;>訊息</label>
+              <textarea id=&quot;message&quot; placeholder=&quot;請輸入您的訊息...&quot; required></textarea>
+            </div>
+            <button type=&quot;submit&quot; class=&quot;form-submit&quot;>發送訊息</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 頁尾 -->
+  <footer class=&quot;footer&quot;>
+    <div class=&quot;container&quot;>
+      <div class=&quot;footer-grid&quot;>
+        <div>
+          <img src=&quot;images/logo.png&quot; alt=&quot;培楠愛國教育基金&quot; class=&quot;logo-img&quot; style=&quot;margin-bottom:16px&quot; />
+          <p style=&quot;font-size:14px;color:#6b7280&quot;>以生命影響生命，共建關懷社區</p>
+        </div>
+        <div>
+          <h4>快速連結</h4>
+          <nav class=&quot;footer-links&quot;>
+            <a href=&quot;#home&quot;>主頁</a>
+            <a href=&quot;#about&quot;>關於我們</a>
+            <a href=&quot;#projects&quot;>重點項目</a>
+            <a href=&quot;#news&quot;>培楠動向</a>
+            <a href=&quot;#support&quot;>支持我們</a>
+            <a href=&quot;#contact&quot;>聯絡我們</a>
+          </nav>
+        </div>
+        <div class=&quot;footer-info&quot;>
+          <h4>聯絡資訊</h4>
+          <p>(+852) 3905 0377</p>
+          <p>peinanfoundation@gmail.com</p>
+          <p>香港九龍旺角彌敦道691-697號永如大廈1字樓697室</p>
+          <p class=&quot;en&quot;>Room 697, 1/F, Winner Mansion, No. 691-697 Nathan Road, Mongkok, Kowloon, Hong Kong</p>
+        </div>
+      </div>
+      <div class=&quot;footer-bottom&quot;>
+        <p>&amp;copy; 2025 培楠愛國教育基金. All rights reserved.</p>
+        <a href=&quot;#&quot;>Privacy Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 導覽列捲動效果
+    
+
+    // 手機選單
+    var menuToggle = document.getElementById('menuToggle');
+    var navMobile = document.getElementById('navMobile');
+    menuToggle.addEventListener('click', function() {
+      navMobile.classList.toggle('open');
+    });
+    navMobile.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() { navMobile.classList.remove('open'); });
+    });
+
+    // 聯絡表單（以 mailto 開啟電郵）
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value;
+      var email = document.getElementById('email').value;
+      var message = document.getElementById('message').value;
+      var subject = encodeURIComponent('培楠基金網站查詢 - ' + name);
+      var body = encodeURIComponent('姓名：' + name + '\n電郵：' + email + '\n\n' + message);
+      window.location.href = 'mailto:peinanfoundation@gmail.com?subject=' + subject + '&amp;body=' + body;
+    });
+  </script>
+</body>
+</html>
+" style="width:100%;height:9600px;border:none;display:block;overflow:hidden;" loading="lazy" allowfullscreen></iframe>
