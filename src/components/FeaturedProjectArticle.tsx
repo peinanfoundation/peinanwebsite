@@ -3,7 +3,13 @@ import { featuredProject } from "@/lib/content";
 import ProjectVideoGrid from "@/components/ProjectVideoGrid";
 import Reveal from "@/components/Reveal";
 
-export default function FeaturedProjectArticle() {
+type FeaturedProjectArticleProps = {
+  jobImages: string[];
+};
+
+export default function FeaturedProjectArticle({
+  jobImages,
+}: FeaturedProjectArticleProps) {
   return (
     <article className="section-divider bg-surface pb-16 pt-8">
       <div className="content-shell mx-auto max-w-[980px] px-6 py-8 sm:py-10">
@@ -44,6 +50,31 @@ export default function FeaturedProjectArticle() {
             className="media-fade h-auto w-full rounded-2xl object-cover shadow-[0_28px_45px_-35px_rgba(42,82,117,0.55)]"
           />
         </Reveal>
+
+        {jobImages.length > 0 && (
+          <Reveal className="mt-14" delayMs={220}>
+            <h2 className="text-center text-xl font-bold text-gray-900 sm:text-2xl">
+              活動相片
+            </h2>
+            <div className="mt-8 grid gap-5 sm:grid-cols-2">
+              {jobImages.map((imageSrc, index) => (
+                <Reveal key={imageSrc} delayMs={240 + index * 30}>
+                  <article className="interactive-card overflow-hidden rounded-2xl ring-1 ring-accent-light/70">
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={imageSrc}
+                        alt={`活動相片 ${index + 1}`}
+                        fill
+                        className="media-fade object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </Reveal>
+        )}
       </div>
     </article>
   );

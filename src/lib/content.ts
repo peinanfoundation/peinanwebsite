@@ -1,6 +1,5 @@
 export const siteConfig = {
   name: "培楠愛國教育基金",
-  nameEn: "PEI NAN Patriotic Education Foundation",
   tagline: "以生命影響生命，共建關懷社區",
   phone: "(+852) 3905 0377",
   email: "peinanfoundation@gmail.com",

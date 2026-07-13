@@ -1,0 +1,28 @@
+{
+  "stories": [
+    {
+      "id": "story-01",
+      "title": "支援基層學童",
+      "description": "教育是消除跨代貧窮的關鍵。我們致力結合社會資源，為劏房及基層學童提供功課輔導和多元小組活動，減輕基層家長經濟和精神負擔，培養積極的學習態度和良好的品格。",
+      "mediaType": "image",
+      "image": "/images/hero-slide-grassroots.jpg",
+      "youtubeId": null
+    },
+    {
+      "id": "story-02",
+      "title": "青少年國民教育",
+      "description": "通過義工訓練及服務，以提高青少年對社會的責任感，與學校合辦愛國活動，培養青年家國情懷，協助青年發展潛能，更好融入國家發展大局。",
+      "mediaType": "image",
+      "image": "/images/hero-slide-youth.jpg",
+      "youtubeId": null
+    },
+    {
+      "id": "story-03",
+      "title": "社區發展服務",
+      "description": "建立一個充滿關懷和愛的社區，誠邀社會各界人士參與義工服務工作，攜手幫助社會上有需要家庭，同時鼓勵居民發揮本身的技能及專長，實踐「助人自助」，以生命影響生命！",
+      "mediaType": "image",
+      "image": "/images/hero-slide-community.jpg",
+      "youtubeId": null
+    }
+  ]
+}

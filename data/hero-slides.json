@@ -1,0 +1,20 @@
+{
+  "slides": [
+    { "id": "slide-01", "image": "/images/hero-slides/slide-01.jpg", "alt": "培楠愛國教育基金活動" },
+    { "id": "slide-02", "image": "/images/hero-slides/slide-02.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-03", "image": "/images/hero-slides/slide-03.jpeg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-04", "image": "/images/hero-slides/slide-04.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-05", "image": "/images/hero-slides/slide-05.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-06", "image": "/images/hero-slides/slide-06.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-07", "image": "/images/hero-slides/slide-07.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-08", "image": "/images/hero-slides/slide-08.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-09", "image": "/images/hero-slides/slide-09.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-10", "image": "/images/hero-slides/slide-10.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-11", "image": "/images/hero-slides/slide-11.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-12", "image": "/images/hero-slides/slide-12.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-13", "image": "/images/hero-slides/slide-13.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-14", "image": "/images/hero-slides/slide-14.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-15", "image": "/images/hero-slides/slide-15.jpg", "alt": "培楠基金活動花絮" },
+    { "id": "slide-16", "image": "/images/hero-slides/slide-16.jpeg", "alt": "培楠基金活動花絮" }
+  ]
+}
