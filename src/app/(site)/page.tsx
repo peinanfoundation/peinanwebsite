@@ -2,11 +2,21 @@ import HeroSlider from "@/components/HeroSlider";
 import HomeProjectVideos from "@/components/HomeProjectVideos";
 import HeroServiceSections from "@/components/HeroServiceSections";
 import Contact from "@/components/Contact";
-import { getHeroSlides, getHeroStories } from "@/lib/cms";
-import { heroSlides as fallbackSlides, heroServiceSlides as fallbackStories } from "@/lib/content";
+import { getFeaturedProject, getHeroSlides, getHeroStories, getProjectVideos } from "@/lib/cms";
+import {
+  featuredProject as fallbackProject,
+  heroSlides as fallbackSlides,
+  heroServiceSlides as fallbackStories,
+  projectHeroVideos as fallbackVideos,
+} from "@/lib/content";
 
 export default async function Home() {
-  const [cmsSlides, cmsStories] = await Promise.all([getHeroSlides(), getHeroStories()]);
+  const [cmsSlides, cmsStories, cmsProject, cmsVideos] = await Promise.all([
+    getHeroSlides(),
+    getHeroStories(),
+    getFeaturedProject(),
+    getProjectVideos(),
+  ]);
 
   const slides =
     cmsSlides.length > 0
@@ -29,10 +39,20 @@ export default async function Home() {
           youtubeId: null,
         }));
 
+  const projectTitle = cmsProject.title || fallbackProject.title;
+  const videos =
+    cmsVideos.length > 0
+      ? cmsVideos
+      : fallbackVideos.map((video, index) => ({
+          id: `fallback-${index}`,
+          youtubeId: video.youtubeId,
+          title: video.title,
+        }));
+
   return (
     <>
       <HeroSlider slides={slides} />
-      <HomeProjectVideos />
+      <HomeProjectVideos title={projectTitle} videos={videos} />
       <HeroServiceSections stories={stories} />
       <Contact />
     </>

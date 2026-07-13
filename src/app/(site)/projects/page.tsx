@@ -1,22 +1,41 @@
-import path from "node:path";
-import { readdir } from "node:fs/promises";
+import {
+  getFeaturedProject,
+  getProjectPhotos,
+  getProjectVideos,
+} from "@/lib/cms";
+import { featuredProject as fallbackProject, projectHeroVideos as fallbackVideos } from "@/lib/content";
 import FeaturedProjectArticle from "@/components/FeaturedProjectArticle";
 
-async function getJobspicImages() {
-  try {
-    const jobspicDir = path.join(process.cwd(), "public", "jobspic");
-    const files = await readdir(jobspicDir);
-
-    return files
-      .filter((file) => /\.(jpg|jpeg|png|webp)$/i.test(file))
-      .sort((a, b) => a.localeCompare(b, "zh-HK"))
-      .map((file) => `/jobspic/${encodeURIComponent(file)}`);
-  } catch {
-    return [];
-  }
-}
-
 export default async function ProjectsPage() {
-  const jobImages = await getJobspicImages();
-  return <FeaturedProjectArticle jobImages={jobImages} />;
+  const [cmsProject, cmsVideos, cmsPhotos] = await Promise.all([
+    getFeaturedProject(),
+    getProjectVideos(),
+    getProjectPhotos(),
+  ]);
+
+  const project =
+    cmsProject.title && cmsProject.background.length > 0
+      ? cmsProject
+      : {
+          title: fallbackProject.title,
+          background: [...fallbackProject.background],
+          goalsIntro: fallbackProject.goalsIntro,
+          goals: [...fallbackProject.goals],
+          image: fallbackProject.image,
+        };
+
+  const videos =
+    cmsVideos.length > 0
+      ? cmsVideos
+      : fallbackVideos.map((video, index) => ({
+          id: `fallback-${index}`,
+          youtubeId: video.youtubeId,
+          title: video.title,
+        }));
+
+  const photos = cmsPhotos;
+
+  return (
+    <FeaturedProjectArticle project={project} videos={videos} photos={photos} />
+  );
 }

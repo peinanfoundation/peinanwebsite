@@ -15,3 +15,11 @@ export async function processStoryImage(buffer: Buffer) {
     .jpeg({ quality: 85, mozjpeg: true })
     .toBuffer();
 }
+
+export async function processProjectPhotoImage(buffer: Buffer) {
+  return sharp(buffer)
+    .rotate()
+    .resize(980, 735, { fit: "cover", position: "centre" })
+    .jpeg({ quality: 85, mozjpeg: true })
+    .toBuffer();
+}
