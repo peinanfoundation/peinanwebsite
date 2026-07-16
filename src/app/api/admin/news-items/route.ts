@@ -13,11 +13,14 @@ export async function GET() {
   return NextResponse.json({ items });
 }
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   if (!(await isAuthenticated())) {
-    return NextResponse.json({ error: "未授權" }, { status: 401 });
+    return NextResponse.json({ error: "未授權，請重新登入後台" }, { status: 401 });
   }
 
+  try {
   const body = await request.json();
   const action = body.action as string;
   const items = await getNewsItems();
@@ -95,4 +98,9 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json({ error: "未知操作" }, { status: 400 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "儲存失敗";
+    console.error("[news-items]", error);
+    return NextResponse.json({ error: message }, { status: 500 });
+  }
 }

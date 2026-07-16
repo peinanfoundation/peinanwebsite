@@ -8,6 +8,8 @@ import {
 } from "@/lib/cms";
 import { isAuthenticated } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const videos = await getProjectVideos();
   return NextResponse.json({ videos });
@@ -15,52 +17,58 @@ export async function GET() {
 
 export async function POST(request: Request) {
   if (!(await isAuthenticated())) {
-    return NextResponse.json({ error: "未授權" }, { status: 401 });
+    return NextResponse.json({ error: "未授權，請重新登入後台" }, { status: 401 });
   }
 
-  const body = await request.json();
-  const action = body.action as string;
-  const videos = await getProjectVideos();
+  try {
+    const body = await request.json();
+    const action = body.action as string;
+    const videos = await getProjectVideos();
 
-  if (action === "add") {
-    const title = String(body.title ?? "").trim();
-    const youtubeId = extractYoutubeId(String(body.youtubeUrl ?? ""));
+    if (action === "add") {
+      const title = String(body.title ?? "").trim();
+      const youtubeId = extractYoutubeId(String(body.youtubeUrl ?? ""));
 
-    if (!title || !youtubeId) {
-      return NextResponse.json({ error: "請填寫標題及正確的 YouTube 連結" }, { status: 400 });
+      if (!title || !youtubeId) {
+        return NextResponse.json({ error: "請填寫標題及正確的 YouTube 連結" }, { status: 400 });
+      }
+
+      const video: ProjectVideo = { id: createId("video"), title, youtubeId };
+      await saveProjectVideos([...videos, video]);
+      return NextResponse.json({ ok: true, video });
     }
 
-    const video: ProjectVideo = { id: createId("video"), title, youtubeId };
-    await saveProjectVideos([...videos, video]);
-    return NextResponse.json({ ok: true, video });
-  }
+    if (action === "update") {
+      const id = String(body.id ?? "");
+      const title = String(body.title ?? "").trim();
+      const youtubeId = extractYoutubeId(String(body.youtubeUrl ?? body.youtubeId ?? ""));
 
-  if (action === "update") {
-    const id = String(body.id ?? "");
-    const title = String(body.title ?? "").trim();
-    const youtubeId = extractYoutubeId(String(body.youtubeUrl ?? body.youtubeId ?? ""));
+      if (!title || !youtubeId) {
+        return NextResponse.json({ error: "請填寫標題及正確的 YouTube 連結" }, { status: 400 });
+      }
 
-    if (!title || !youtubeId) {
-      return NextResponse.json({ error: "請填寫標題及正確的 YouTube 連結" }, { status: 400 });
+      const updated: ProjectVideo[] = videos.map((video) =>
+        video.id === id ? { ...video, title, youtubeId } : video,
+      );
+
+      if (!updated.some((video) => video.id === id)) {
+        return NextResponse.json({ error: "找不到該影片" }, { status: 404 });
+      }
+
+      await saveProjectVideos(updated);
+      return NextResponse.json({ ok: true });
     }
 
-    const updated: ProjectVideo[] = videos.map((video) =>
-      video.id === id ? { ...video, title, youtubeId } : video,
-    );
-
-    if (!updated.some((video) => video.id === id)) {
-      return NextResponse.json({ error: "找不到該影片" }, { status: 404 });
+    if (action === "remove") {
+      const id = String(body.id ?? "");
+      await saveProjectVideos(videos.filter((video) => video.id !== id));
+      return NextResponse.json({ ok: true });
     }
 
-    await saveProjectVideos(updated);
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ error: "未知操作" }, { status: 400 });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "儲存失敗";
+    console.error("[project-videos]", error);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
-
-  if (action === "remove") {
-    const id = String(body.id ?? "");
-    await saveProjectVideos(videos.filter((video) => video.id !== id));
-    return NextResponse.json({ ok: true });
-  }
-
-  return NextResponse.json({ error: "未知操作" }, { status: 400 });
 }

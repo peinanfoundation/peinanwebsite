@@ -58,6 +58,9 @@ export async function readCmsJson<T>(filename: string, fallback: T): Promise<T> 
 
 export async function writeCmsJson<T>(filename: string, data: T) {
   if (!useBlobStorage()) {
+    if (process.env.VERCEL) {
+      throw new Error("正式環境未設定 Blob 儲存，無法儲存內容");
+    }
     const { mkdir, writeFile } = await import("node:fs/promises");
     const dataDir = path.join(process.cwd(), "data");
     await mkdir(dataDir, { recursive: true });
@@ -79,13 +82,18 @@ export async function writeCmsJson<T>(filename: string, data: T) {
   });
 }
 
+function toUploadBody(buffer: Buffer) {
+  // Vercel Blob rejects SharedArrayBuffer-backed views from sharp output.
+  return Buffer.from(buffer);
+}
+
 export async function uploadImageBlob(
   storagePath: string,
   buffer: Buffer,
   contentType = "image/jpeg",
 ) {
   const token = getBlobToken();
-  const blob = await put(storagePath, buffer, {
+  const blob = await put(storagePath, toUploadBody(buffer), {
     access: "public",
     token,
     contentType,

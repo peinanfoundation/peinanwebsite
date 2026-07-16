@@ -41,37 +41,43 @@ export default function HeroSlidesAdmin() {
     setUploading(true);
     setMessage("");
 
-    const formData = new FormData();
-    formData.append("file", file);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
 
-    const uploadResponse = await fetch("/api/admin/upload/hero-slide", {
-      method: "POST",
-      body: formData,
-    });
+      const uploadResponse = await fetch("/api/admin/upload/hero-slide", {
+        method: "POST",
+        body: formData,
+      });
+      const uploadData = await uploadResponse.json().catch(() => ({}));
 
-    if (!uploadResponse.ok) {
-      const data = await uploadResponse.json();
-      setMessage(data.error ?? "上傳失敗");
+      if (!uploadResponse.ok) {
+        setMessage(uploadData.error ?? "上傳失敗，請重新登入後再試");
+        return;
+      }
+
+      const addResponse = await fetch("/api/admin/hero-slides", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "add",
+          image: uploadData.image,
+          alt: "培楠基金活動花絮",
+        }),
+      });
+      const addData = await addResponse.json().catch(() => ({}));
+
+      if (!addResponse.ok) {
+        setMessage(addData.error ?? "加入幻燈片失敗");
+      } else {
+        setMessage("已上傳並加入幻燈片");
+        await loadData();
+      }
+    } catch {
+      setMessage("上傳失敗，請檢查網路後再試");
+    } finally {
       setUploading(false);
-      return;
     }
-
-    const { image } = await uploadResponse.json();
-    const addResponse = await fetch("/api/admin/hero-slides", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ action: "add", image, alt: "培楠基金活動花絮" }),
-    });
-
-    if (!addResponse.ok) {
-      const data = await addResponse.json();
-      setMessage(data.error ?? "加入幻燈片失敗");
-    } else {
-      setMessage("已上傳並加入幻燈片");
-      await loadData();
-    }
-
-    setUploading(false);
   }
 
   async function addFromLibrary(image: string) {

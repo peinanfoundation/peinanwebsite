@@ -3,6 +3,8 @@ import Link from "next/link";
 import AdminLogoutButton from "@/components/admin/AdminLogoutButton";
 import { getAdminBasePath } from "@/lib/admin-path";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "後台管理 | 培楠愛國教育基金",
   robots: { index: false, follow: false },
