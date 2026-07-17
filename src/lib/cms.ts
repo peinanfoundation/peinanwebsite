@@ -1,5 +1,6 @@
 import { readdir } from "node:fs/promises";
 import path from "node:path";
+import { aboutContent, images } from "@/lib/content";
 import { listUploadedImages, readCmsJson, writeCmsJson } from "@/lib/cms-storage";
 
 export type HeroSlide = {
@@ -49,6 +50,20 @@ export type NewsItem = {
   publishedAt: string;
 };
 
+export type AboutContent = {
+  banner: {
+    label: string;
+    title: string;
+    description: string;
+  };
+  purpose: string;
+  mission: string;
+  vision: string;
+  values: string[];
+  teamImage: string;
+  officeImage: string;
+};
+
 type FeaturedProjectData = FeaturedProject;
 type ProjectVideosData = { videos: ProjectVideo[] };
 type ProjectPhotosData = { photos: ProjectPhoto[] };
@@ -60,6 +75,7 @@ const FEATURED_PROJECT_FILE = "featured-project.json";
 const PROJECT_VIDEOS_FILE = "project-videos.json";
 const PROJECT_PHOTOS_FILE = "project-photos.json";
 const NEWS_ITEMS_FILE = "news-items.json";
+const ABOUT_CONTENT_FILE = "about-content.json";
 
 const HERO_SLIDE_LIBRARY_DIRS = [
   path.join(process.cwd(), "public", "images", "hero-slides"),
@@ -79,6 +95,20 @@ const defaultFeaturedProject: FeaturedProject = {
   goalsIntro: "",
   goals: [],
   image: "/images/hero-slide-grassroots.jpg",
+};
+
+const defaultAboutContent: AboutContent = {
+  banner: {
+    label: "關於我們",
+    title: "培楠愛國教育基金",
+    description: "認可慈善機構，致力促進國民教育，弘揚中華優良傳統美德",
+  },
+  purpose: aboutContent.purpose,
+  mission: aboutContent.mission,
+  vision: aboutContent.vision,
+  values: [...aboutContent.values],
+  teamImage: images.aboutTeam,
+  officeImage: images.aboutOffice,
 };
 
 export async function getHeroSlides(): Promise<HeroSlide[]> {
@@ -232,4 +262,12 @@ export async function getNewsItemBySlug(slug: string) {
 
 export async function saveNewsItems(items: NewsItem[]) {
   await writeCmsJson(NEWS_ITEMS_FILE, { items });
+}
+
+export async function getAboutContent(): Promise<AboutContent> {
+  return readCmsJson<AboutContent>(ABOUT_CONTENT_FILE, defaultAboutContent);
+}
+
+export async function saveAboutContent(content: AboutContent) {
+  await writeCmsJson(ABOUT_CONTENT_FILE, content);
 }

@@ -22,6 +22,7 @@ export default function AdminDashboardLayout({
     { href: `${adminBase}/hero-slides`, label: "首頁幻燈片" },
     { href: `${adminBase}/hero-stories`, label: "首頁 Story" },
     { href: `${adminBase}/projects`, label: "重點項目" },
+    { href: `${adminBase}/about`, label: "關於我們" },
     { href: `${adminBase}/news`, label: "培楠動向" },
   ];
 

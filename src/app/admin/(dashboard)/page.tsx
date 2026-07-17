@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+  getAboutContent,
   getFeaturedProject,
   getHeroSlides,
   getHeroStories,
@@ -11,13 +12,14 @@ import { getAdminBasePath } from "@/lib/admin-path";
 
 export default async function AdminDashboardPage() {
   const adminBase = getAdminBasePath();
-  const [slides, stories, project, videos, photos, news] = await Promise.all([
+  const [slides, stories, project, videos, photos, news, about] = await Promise.all([
     getHeroSlides(),
     getHeroStories(),
     getFeaturedProject(),
     getProjectVideos(),
     getProjectPhotos(),
     getNewsItems(),
+    getAboutContent(),
   ]);
 
   return (
@@ -56,6 +58,16 @@ export default async function AdminDashboardPage() {
             {videos.length} 部影片 · {photos.length} 張相片
           </p>
           <p className="mt-2 text-sm text-brand-dark">管理重點項目 →</p>
+        </Link>
+
+        <Link
+          href={`${adminBase}/about`}
+          className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-200 transition-shadow hover:shadow-md"
+        >
+          <p className="text-sm text-slate-500">關於我們</p>
+          <p className="mt-2 truncate text-lg font-bold text-slate-900">{about.banner.title}</p>
+          <p className="mt-1 text-sm text-slate-500">{about.values.length} 項核心價值</p>
+          <p className="mt-2 text-sm text-brand-dark">管理關於我們 →</p>
         </Link>
 
         <Link
