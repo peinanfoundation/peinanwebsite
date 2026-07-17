@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useEffect, useState } from "react";
-import { Pencil, Plus, Trash2, Upload } from "lucide-react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { ImagePlus, Pencil, Plus, Trash2, Upload } from "lucide-react";
+import { insertNewsImageMarker } from "@/lib/news-content";
 
 type NewsItem = {
   id: string;
@@ -33,11 +34,13 @@ const emptyForm = (): NewsForm => ({
 });
 
 export default function NewsAdmin() {
+  const contentRef = useRef<HTMLTextAreaElement>(null);
   const [items, setItems] = useState<NewsItem[]>([]);
   const [form, setForm] = useState<NewsForm>(emptyForm());
   const [editingId, setEditingId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [uploading, setUploading] = useState(false);
+  const [uploadingCover, setUploadingCover] = useState(false);
+  const [uploadingContentImage, setUploadingContentImage] = useState(false);
   const [message, setMessage] = useState("");
 
   async function loadData() {
@@ -52,8 +55,7 @@ export default function NewsAdmin() {
     loadData();
   }, []);
 
-  async function handleImageUpload(file: File) {
-    setUploading(true);
+  async function uploadNewsImage(file: File) {
     const formData = new FormData();
     formData.append("file", file);
 
@@ -61,18 +63,53 @@ export default function NewsAdmin() {
       method: "POST",
       body: formData,
     });
+    const data = await response.json().catch(() => ({}));
 
     if (!response.ok) {
-      const data = await response.json();
-      setMessage(data.error ?? "上傳失敗");
-      setUploading(false);
-      return;
+      throw new Error(data.error ?? "上傳失敗");
     }
 
-    const data = await response.json();
-    setForm((prev) => ({ ...prev, image: data.image }));
-    setMessage("封面圖已上傳");
-    setUploading(false);
+    return data.image as string;
+  }
+
+  async function handleCoverUpload(file: File) {
+    setUploadingCover(true);
+    setMessage("");
+
+    try {
+      const image = await uploadNewsImage(file);
+      setForm((prev) => ({ ...prev, image }));
+      setMessage("封面圖已上傳");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "上傳失敗");
+    } finally {
+      setUploadingCover(false);
+    }
+  }
+
+  async function handleContentImageUpload(file: File) {
+    setUploadingContentImage(true);
+    setMessage("");
+
+    try {
+      const image = await uploadNewsImage(file);
+      const textarea = contentRef.current;
+      const selectionStart = textarea?.selectionStart ?? form.content.length;
+      const selectionEnd = textarea?.selectionEnd ?? selectionStart;
+      const nextContent = insertNewsImageMarker(
+        form.content,
+        image,
+        selectionStart,
+        selectionEnd,
+      );
+
+      setForm((prev) => ({ ...prev, content: nextContent }));
+      setMessage("圖片已插入內文，請儲存變更");
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : "上傳失敗");
+    } finally {
+      setUploadingContentImage(false);
+    }
   }
 
   function startEdit(item: NewsItem) {
@@ -211,12 +248,33 @@ export default function NewsAdmin() {
             <label className="block">
               <span className="text-sm font-medium text-slate-700">完整內容</span>
               <textarea
+                ref={contentRef}
                 value={form.content}
                 onChange={(e) => setForm((f) => ({ ...f, content: e.target.value }))}
                 rows={8}
-                placeholder="留空則使用摘要作為內容"
-                className="mt-1 w-full rounded-lg border border-slate-200 px-4 py-3 outline-none ring-brand/30 focus:ring-2"
+                placeholder="留空則使用摘要作為內容。可在段落之間插入圖片。"
+                className="mt-1 w-full rounded-lg border border-slate-200 px-4 py-3 font-mono text-sm outline-none ring-brand/30 focus:ring-2"
               />
+              <div className="mt-2 flex flex-wrap items-center gap-3">
+                <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm hover:bg-slate-50">
+                  <ImagePlus size={16} />
+                  {uploadingContentImage ? "上傳中..." : "插入圖片到內文"}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    disabled={uploadingContentImage}
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) handleContentImageUpload(file);
+                      e.target.value = "";
+                    }}
+                  />
+                </label>
+                <p className="text-xs text-slate-500">
+                  游標位置會插入 <code className="rounded bg-slate-100 px-1">[image:網址]</code>
+                </p>
+              </div>
             </label>
 
             <div>
@@ -224,15 +282,15 @@ export default function NewsAdmin() {
               <div className="mt-2 flex flex-wrap items-center gap-4">
                 <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm hover:bg-slate-50">
                   <Upload size={16} />
-                  {uploading ? "上傳中..." : "上傳封面"}
+                  {uploadingCover ? "上傳中..." : "上傳封面"}
                   <input
                     type="file"
                     accept="image/*"
                     className="hidden"
-                    disabled={uploading}
+                    disabled={uploadingCover}
                     onChange={(e) => {
                       const file = e.target.files?.[0];
-                      if (file) handleImageUpload(file);
+                      if (file) handleCoverUpload(file);
                       e.target.value = "";
                     }}
                   />

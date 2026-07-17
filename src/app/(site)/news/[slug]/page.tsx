@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar } from "lucide-react";
 import PageBanner from "@/components/PageBanner";
+import NewsContent from "@/components/NewsContent";
 import Reveal from "@/components/Reveal";
 import { getNewsItemBySlug, getNewsItems } from "@/lib/cms";
 
@@ -22,8 +23,6 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
   if (!item) {
     notFound();
   }
-
-  const paragraphs = item.content.split(/\n{2,}/).filter(Boolean);
 
   return (
     <>
@@ -64,9 +63,7 @@ export default async function NewsDetailPage({ params }: NewsDetailPageProps) {
             className="mt-10 space-y-6 text-base leading-relaxed text-gray-700 sm:text-lg"
             delayMs={120}
           >
-            {paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-            ))}
+            <NewsContent content={item.content} imageAlt={item.title} />
           </Reveal>
         </div>
       </article>
