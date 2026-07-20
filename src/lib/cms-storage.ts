@@ -12,7 +12,7 @@ function getBlobToken() {
   return process.env.BLOB_READ_WRITE_TOKEN;
 }
 
-async function seedFromLocal<T>(filename: string, fallback: T): Promise<T> {
+async function readLocalJson<T>(filename: string, fallback: T): Promise<T> {
   try {
     const localPath = path.join(process.cwd(), "data", filename);
     const raw = await readFile(localPath, "utf8");
@@ -22,15 +22,35 @@ async function seedFromLocal<T>(filename: string, fallback: T): Promise<T> {
   }
 }
 
-export async function readCmsJson<T>(filename: string, fallback: T): Promise<T> {
-  if (!useBlobStorage()) {
-    try {
-      const localPath = path.join(process.cwd(), "data", filename);
-      const raw = await readFile(localPath, "utf8");
-      return JSON.parse(raw) as T;
-    } catch {
-      return fallback;
+function isEmptyCmsPayload(filename: string, data: unknown) {
+  if (!data || typeof data !== "object") return true;
+
+  const record = data as Record<string, unknown>;
+
+  if (filename === "featured-project.json") {
+    const project = data as { background?: string[]; goalsIntro?: string };
+    return !project.goalsIntro && !(project.background?.length);
+  }
+
+  if (filename === "about-content.json") {
+    const about = data as { purpose?: string };
+    return !about.purpose;
+  }
+
+  for (const key of ["slides", "stories", "items", "photos", "videos"]) {
+    if (Array.isArray(record[key])) {
+      return record[key].length === 0;
     }
+  }
+
+  return false;
+}
+
+export async function readCmsJson<T>(filename: string, fallback: T): Promise<T> {
+  const localData = await readLocalJson(filename, fallback);
+
+  if (!useBlobStorage()) {
+    return localData;
   }
 
   const token = getBlobToken();
@@ -41,18 +61,23 @@ export async function readCmsJson<T>(filename: string, fallback: T): Promise<T> 
     const match = blobs.find((blob) => blob.pathname === key);
 
     if (!match) {
-      const seeded = await seedFromLocal(filename, fallback);
-      if (seeded !== fallback) {
-        await writeCmsJson(filename, seeded);
+      if (!isEmptyCmsPayload(filename, localData)) {
+        await writeCmsJson(filename, localData);
       }
-      return seeded;
+      return localData;
     }
 
     const response = await fetch(match.url, { cache: "no-store" });
-    if (!response.ok) return fallback;
-    return (await response.json()) as T;
+    if (!response.ok) return localData;
+
+    const remote = (await response.json()) as T;
+    if (isEmptyCmsPayload(filename, remote)) {
+      return localData;
+    }
+
+    return remote;
   } catch {
-    return seedFromLocal(filename, fallback);
+    return localData;
   }
 }
 
