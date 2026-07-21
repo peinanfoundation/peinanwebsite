@@ -4,12 +4,19 @@ import { list, put } from "@vercel/blob";
 
 const CMS_PREFIX = "cms/";
 
-export function useBlobStorage() {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+function hasValidBlobToken() {
+  const token = process.env.BLOB_READ_WRITE_TOKEN?.trim() ?? "";
+  return token.startsWith("vercel_blob_rw_");
 }
 
-function getBlobToken() {
-  return process.env.BLOB_READ_WRITE_TOKEN;
+export function useBlobStorage() {
+  // Connected Blob store on Vercel can authenticate via OIDC without RW token.
+  return hasValidBlobToken() || Boolean(process.env.BLOB_STORE_ID);
+}
+
+function getBlobAuthOptions() {
+  if (!hasValidBlobToken()) return {};
+  return { token: process.env.BLOB_READ_WRITE_TOKEN };
 }
 
 async function readLocalJson<T>(filename: string, fallback: T): Promise<T> {
@@ -53,11 +60,10 @@ export async function readCmsJson<T>(filename: string, fallback: T): Promise<T> 
     return localData;
   }
 
-  const token = getBlobToken();
   const key = `${CMS_PREFIX}${filename}`;
 
   try {
-    const { blobs } = await list({ prefix: key, token });
+    const { blobs } = await list({ prefix: key, ...getBlobAuthOptions() });
     const match = blobs.find((blob) => blob.pathname === key);
 
     if (!match) {
@@ -97,10 +103,9 @@ export async function writeCmsJson<T>(filename: string, data: T) {
     return;
   }
 
-  const token = getBlobToken();
   await put(`${CMS_PREFIX}${filename}`, JSON.stringify(data, null, 2), {
     access: "public",
-    token,
+    ...getBlobAuthOptions(),
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
@@ -117,10 +122,9 @@ export async function uploadImageBlob(
   buffer: Buffer,
   contentType = "image/jpeg",
 ) {
-  const token = getBlobToken();
   const blob = await put(storagePath, toUploadBody(buffer), {
     access: "public",
-    token,
+    ...getBlobAuthOptions(),
     contentType,
   });
   return blob.url;
@@ -129,8 +133,7 @@ export async function uploadImageBlob(
 export async function listUploadedImages(prefix: string) {
   if (!useBlobStorage()) return [];
 
-  const token = getBlobToken();
-  const { blobs } = await list({ prefix, token });
+  const { blobs } = await list({ prefix, ...getBlobAuthOptions() });
   return blobs.map((blob) => ({
     path: blob.url,
     filename: blob.pathname.split("/").pop() ?? blob.pathname,
